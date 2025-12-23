@@ -9,24 +9,30 @@ export interface Env {
 }
 
 export default {
-  async fetch(req: Request, env: Env): Promise<Response> {
+  async fetch(req: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(req.url);
 
+    // Always return a Response (never undefined)
+    if (url.pathname === "/health") {
+      return new Response("ok");
+    }
+
+    if (url.pathname !== "/telegram") {
+      return new Response("Not found", { status: 404 });
+    }
+
+    if (req.method !== "POST") {
+      return new Response("Method not allowed", { status: 405 });
+    }
+
     try {
-      if (url.pathname === "/health") return new Response("ok");
-
-      if (url.pathname !== "/telegram" || req.method !== "POST") {
-        return new Response("Not found", { status: 404 });
-      }
-
       const update = await req.json();
-      console.log("Incoming update:", JSON.stringify(update));
-
-      await handleTelegramUpdate(update, env);
+      // Run async work safely; don't block response to Telegram
+      ctx.waitUntil(handleTelegramUpdate(update, env));
       return new Response("ok");
     } catch (err) {
       console.log("Worker error:", err instanceof Error ? (err.stack || err.message) : String(err));
-      // Return 200 so Telegram doesn't keep retrying aggressively
+      // Return 200 to prevent Telegram retry storms
       return new Response("ok");
     }
   },
