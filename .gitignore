@@ -1,0 +1,35 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Build artifacts
+dist/
+build/
+.output/
+tsconfig.tsbuildinfo
+
+# Cloudflare Wrangler specific
+.wrangler/
+.dev.vars
+dist/
+worker-bundle/
+
+# Environment variables & secrets
+.env
+*.env
+.env.*
+!.env.example
+
+# Supabase local development (if using Supabase CLI later)
+.supabase/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# System files
+.DS_Store
+Thumbs.db

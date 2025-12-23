@@ -1,0 +1,28 @@
+{
+  "name": "glc-telegram-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amanipapi/glc-telegram-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/amanipapi/glc-telegram-bot/issues"
+  },
+  "homepage": "https://github.com/amanipapi/glc-telegram-bot#readme",
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "wrangler": "^4.56.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.89.0"
+  }
+}
