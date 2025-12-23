@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/amanipapi/glc-telegram-bot#readme",
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20251223.0",
     "typescript": "^5.9.3",
     "wrangler": "^4.56.0"
   },
